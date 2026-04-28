@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Snack Expo - Tema Zoom</title>
+  <link rel="icon" type="image/png" href="logo.zoom.jpg">
+  <style>
+    body {
+      font-family: Arial;
+      background: #0a0a1a url('zoom2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #00e5ff;
+      text-shadow: 0 0 15px #00e5ff;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin-bottom: 30px;
+    }
+
+    .btn-zoom {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.7);
+      color: #00e5ff;
+      border: 2px solid #00e5ff;
+      box-shadow: 0 0 15px #00e5ff, inset 0 0 10px #000;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-zoom:hover {
+      background: #0d47a1;
+      color: #fff;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00e5ff, inset 0 0 15px #0d47a1;
+    }
+
+    .projeto {
+      margin: 30px 0;
+    }
+
+    .qr {
+      margin-top: 15px;
+    }
+
+    .qr img {
+      width: 150px;
+      height: 150px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Snack Expo</h1>
+  <p>Exemplos e exercícios no Snack Expo.</p>
+
+  <!-- Exemplo de bloco de projeto com botão e QR Code -->
+  <div class="projeto">
+    <a href="https://snack.expo.dev/@joaopedrogoncalves/d13b21" class="btn-zoom">Projeto 1</a>
+    <div class="qr">
+      <!-- Coloque aqui a imagem do QR Code -->
+      <img src="qr.code.png" alt="QR Code Projeto 1">
+    </div>
+    <!-- Exemplo de bloco de projeto com botão e QR Code -->
+  <div class="projeto">
+    <a href="https://snack.expo.dev/@joaopedrogoncalves/c88a71" class="btn-zoom">Projeto 2</a>
+    <div class="qr">
+      <!-- Coloque aqui a imagem do QR Code -->
+      <img src="qr.code2.png" alt="QR Code Projeto 1">
+    </div>
+  </div>
+  <br><br>
+  <a href="index.html" class="btn-zoom">Voltar ao Início</a>
+</body>
+
+</html>
