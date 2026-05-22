@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Unidade Polo - Colégio Estadual | CEP 86700-215</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23003366'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-weight='bold'%3EUP%3C/text%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f0f4fa;
+            color: #1e2a3e;
+            scroll-behavior: smooth;
+        }
+
+        .top-bar {
+            background-color: #001f3f;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: flex-end;
+            border-bottom: 1px solid #2c5a8c;
+        }
+
+        .linkedin-btn {
+            background-color: #0077b5;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .linkedin-btn:hover {
+            background-color: #005e8c;
+            transform: scale(1.02);
+        }
+
+        header {
+            background: linear-gradient(135deg, #003366, #002244);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background-color: #0a2f5a;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 12px 10px;
+            gap: 10px;
+        }
+
+        nav a {
+            color: #f0f9ff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 40px;
+            transition: 0.2s;
+            background-color: #1f4e7a;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background-color: #ffb347;
+            color: #002642;
+            transform: translateY(-2px);
+        }
+
+        .banner {
+            background: linear-gradient(120deg, #d9eaff, #ffffff);
+            padding: 45px 20px;
+            text-align: center;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .banner h2 {
+            font-size: 2.2rem;
+            color: #003366;
+        }
+
+        .carousel-section {
+            max-width: 1100px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px 30px;
+        }
+
+        .carousel-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #003366;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eef3fc;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 51, 102, 0.8);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 50%;
+            transition: 0.2s;
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .carousel-btn:hover {
+            background-color: #ffb347;
+            color: #002642;
+        }
+
+        .btn-prev { left: 15px; }
+        .btn-next { right: 15px; }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .indicator.active {
+            background-color: #003366;
+            transform: scale(1.3);
+        }
+
+        .vertical-box {
+            background-color: #fff;
+            border: 2px solid #0055a5;
+            border-radius: 28px;
+            width: 85%;
+            max-width: 550px;
+            margin: 40px auto;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 68, 128, 0.15);
+        }
+
+        .vertical-box h3 {
+            color: #003366;
+            margin-top: 22px;
+            border-left: 5px solid #ffb347;
+            padding-left: 12px;
+        }
+
+        .vertical-box p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .map-section {
+            max-width: 1000px;
+            margin: 30px auto 20px;
+            background: white;
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .map-section h3 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .map-container {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 380px;
+            border: 0;
+            display: block;
+        }
+        .address-info {
+            margin-top: 15px;
+            background: #eef2fc;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .atendimento-badge {
+            background: #e6f4ea;
+            border-left: 5px solid #2e7d32;
+            padding: 12px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .portfolio-btn {
+            display: inline-block;
+            margin: 20px auto 40px;
+            padding: 14px 34px;
+            background-color: #0055a5;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .portfolio-btn:hover {
+            background-color: #ff8c42;
+            transform: scale(1.02);
+        }
+
+        footer {
+            background-color: #001f3f;
+            color: #ccdeee;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        .page-content {
+            background: white;
+            border-radius: 32px;
+            margin: 30px auto;
+            max-width: 1000px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .page-content h2 {
+            color: #003366;
+            border-left: 6px solid #ffb347;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .page-content ul {
+            margin: 20px 0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            padding-left: 40px;
+        }
+        .page-content li {
+            margin-bottom: 10px;
+        }
+        .btn-voltar {
+            background: #0055a5;
+            padding: 12px 30px;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-voltar:hover {
+            background: #ff8c42;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Instruções no código (visível apenas no HTML) */
+        .instructions-comment {
+            background: #e8f0fe;
+            border-left: 5px solid #003366;
+            padding: 15px 20px;
+            margin: 20px auto;
+            max-width: 1100px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 13px;
+            display: none; /* Escondido por padrão - remova esta linha se quiser ver as instruções */
+        }
+
+        @media (max-width: 650px) {
+            .vertical-box { width: 90%; padding: 20px; }
+            .carousel-btn { font-size: 1.5rem; padding: 6px 12px; }
+            .map-container iframe { height: 280px; }
+            .page-content { padding: 20px; margin: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <a href="https://www.linkedin.com/in/joao-pedro-goncalves-42a115345/" target="_blank" class="linkedin-btn">
+        🔗 Meu LinkedIn
+    </a>
+</div>
+
+<header>
+    <h1>🏛️ Colégio Estadual Unidade Polo</h1>
+    <p>Excelência em Educação Tecnológica | CEP 86700-215 - Arapongas/PR</p>
+</header>
+
+<nav>
+    <a onclick="showPage('home')">Início</a>
+    <a onclick="showPage('colegio')">Colégio</a>
+    <a onclick="showPage('cursos')">Cursos</a>
+    <a onclick="showPage('contato')">Contato</a>
+</nav>
+
+<!-- PÁGINA INICIAL (conteúdo principal) -->
+<div id="homePage">
+    <div class="banner">
+        <h2>🚀 Formando Profissionais para o Futuro</h2>
+        <p>Conheça nossos níveis de ensino e cursos voltados para inovação e empregabilidade.</p>
+    </div>
+
+    <!-- CARROSSEL DE IMAGENS -->
+    <div class="carousel-section">
+        <div class="carousel-title">📸 GALERIA DO COLÉGIO ESTADUAL UNIDADE POLO</div>
+        <div class="carousel-container">
+            <button class="carousel-btn btn-prev" id="prevBtn">❮</button>
+            <div class="carousel-track" id="carouselTrack"></div>
+            <button class="carousel-btn btn-next" id="nextBtn">❯</button>
+        </div>
+        <div class="indicators" id="indicators"></div>
+    </div>
+
+    <div>
+    <div class="vertical-box">
+        <h3>📖 Ensino Fundamental</h3>
+        <p>Base sólida para o desenvolvimento acadêmico, com foco em valores, cidadania e preparação para o futuro. Projetos interdisciplinares e laboratório de ciências.</p>
+    </div>
+
+    <div class="vertical-box">
+        <h3>🎓 Ensino Médio</h3>
+        <p>Formação completa para jovens, preparando-os para vestibulares, mercado de trabalho e vida universitária. Ênfase em raciocínio lógico e protagonismo.</p>
+   </div>
+
+   <div class="vertical-box">
+        <h3>⚡ Ensino Médio Integrado ao Técnico em ADS e IA</h3>
+        <p>Opção diferenciada que une o ensino médio tradicional com formação técnica em <strong>Análise e Desenvolvimento de Sistemas</strong> e <strong>Inteligência Artificial</strong>. Diploma de técnico de nível médio + certificação em tecnologia.</p>
+   </div>
+    </div>
+
+    <!-- MAPA COM CEP 86700-215 -->
+    <div class="map-section">
+        <h3>📍 Nossa Localização - CEP 86700-215 | Arapongas/PR</h3>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.4567890123457!2d-51.425838!3d-23.415928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ec6ce8a88c88c9%3A0x7b7b7b7b7b7b7b7b!2sArapongas%2C%20PR%2C%2086700-215!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="address-info">
+            📍 Rua dos Estudantes, 1500 - Jardim Universitário, Arapongas - PR, CEP 86700-215
+        </div>
+        <div class="atendimento-badge">
+            🕒 Atendimento: Segunda a Sexta, das 8h às 18h (horário comercial)
+        </div>
+    </div>
+
+    <!-- Botão Portfólio -->
+    <div style="text-align: center;">
+        <a href="index.html" target="_blank" class="portfolio-btn">📁 Veja meu Portfólio</a>
+    </div>
+</div>
+
+<!-- PÁGINA COLÉGIO -->
+<div id="colegioPage" class="page-content hidden">
+    <h2>🏫 Colégio Estadual Unidade Polo</h2>
+    <p style="margin: 20px 0;">Oferecemos uma educação transformadora, unindo tradição acadêmica e inovação tecnológica. Conheça nossas etapas de ensino:</p>
+    <ul>
+        <li><strong>📚 Ensino Fundamental</strong> – Anos finais com ênfase em letramento digital, projetos interdisciplinares e formação cidadã.</li>
+        <li><strong>🎓 Ensino Médio</strong> – Preparação para vestibulares, ENEM e desenvolvimento de habilidades socioemocionais.</li>
+        <li><strong>⚡ Ensino Médio Integrado ao Técnico em ADS e IA</strong> – Curso de 3 anos com certificação técnica em Análise e Desenvolvimento de Sistemas e Inteligência Artificial.</li>
+    </ul>
+    <p>Laboratórios atualizados, corpo docente especializado e parcerias com empresas de tecnologia da região de Arapongas (CEP 86700-215).</p>
+    <div style="margin-top: 30px; background: #eef2fc; border-radius: 28px; padding: 20px;">
+        <h3>📅 Horário de Funcionamento</h3>
+        <p>Segunda a Sexta-feira, das 8h às 18h (atendimento administrativo e pedagógico).</p>
+    </div>
+    <button class="btn-voltar" onclick="showPage('home')">⬅ Voltar ao Início</button>
+</div>
+
+<!-- PÁGINA CURSOS -->
+<div id="cursosPage" class="page-content hidden">
+    <h2>💻 Cursos Técnicos e Tecnológicos</h2>
+    <p style="margin: 20px 0;">A Unidade Polo oferece cursos de excelência nas áreas de desenvolvimento e inteligência artificial.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 25px; margin: 30px 0;">
+        <div style="flex:1; min-width: 240px; background:#f5f9ff; border-radius: 24px; padding: 20px;">
+            <h3 style="color:#0055a5;">📱 Análise e Desenvolvimento de Sistemas (ADS)</h3>
+            <p>Duração: 2,5 anos. Grade: Programação Web, Mobile, Banco de Dados, Engenharia de Software, Cloud Computing.</p>
+        </div>
+        <div style="flex:1; min-width: 240px; background:#f5f9ff; border-radius: 24px; padding: 20px;">
+            <h3 style="color:#0055a5;">🧠 Inteligência Artificial (IA)</h3>
+            <p>Duração: 2,5 anos. Grade: Python para IA, Machine Learning, Deep Learning, Processamento de Linguagem Natural.</p>
+        </div>
+    </div>
+    <div class="atendimento-badge" style="margin: 20px 0; display: inline-block;">🕒 Atendimento: Segunda a Sexta, 8h às 18h</div>
+    <br><br>
+    <button class="btn-voltar" onclick="showPage('home')">⬅ Voltar ao Início</button>
+</div>
+
+<!-- PÁGINA CONTATO -->
+<div id="contatoPage" class="page-content hidden">
+    <h2>📞 Fale Conosco - Unidade Polo Arapongas</h2>
+    <p><strong>Endereço:</strong> Rua dos Estudantes, 1500 - Jardim Universitário, Arapongas - PR, CEP 86700-215</p>
+    <p><strong>WhatsApp:</strong> (43) 98765-4321</p>
+    <p><strong>Email:</strong> contato@unidadepoloarapongas.edu.br</p>
+    <p><strong>Horário:</strong> Segunda a Sexta, das 8h às 18h</p>
+    <div class="map-container" style="margin: 20px 0; border-radius: 24px; overflow:hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.4567890123457!2d-51.425838!3d-23.415928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ec6ce8a88c88c9%3A0x7b7b7b7b7b7b7b7b!2sArapongas%2C%20PR%2C%2086700-215!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="320" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <button class="btn-voltar" onclick="showPage('home')">⬅ Voltar ao Início</button>
+</div>
+
+<footer>
+    © 2026 Colégio Estadual Unidade Polo - CEP 86700-215 | Arapongas/PR | Todos os direitos reservados
+</footer>
+
+<script>
+    // =================================================================
+    // ⭐⭐⭐ COLOQUE AQUI AS URLs DAS SUAS IMAGENS ⭐⭐⭐
+    // =================================================================
+    // Basta substituir os links abaixo pelos endereços das suas imagens.
+    // 
+    // COMO ADICIONAR IMAGENS:
+    // 1. Você pode usar imagens da internet (ex: "https://meusite.com/foto.jpg")
+    // 2. Ou imagens locais (ex: "imagens/minha-foto.jpg" - crie uma pasta "imagens")
+    // 3. Adicione quantas imagens quiser, basta seguir o formato abaixo
+    // 
+    // FORMATO:
+    // {
+    //     url: "LINK_DA_SUA_IMAGEM_AQUI",
+    //     titulo: "Título da imagem",
+    //     descricao: "Descrição opcional"
+    // }
+    // =================================================================
+
+    const minhasImagens = [
+        {
+            url: "https://www.cobrareporter.com.br/wp-content/uploads/2023/05/Col%C3%A9gio-Unidade-Polo-arapongas-1-1024x576.jpeg",
+            titulo: "Laboratório de Informática",
+            descricao: "Espaço equipado com computadores de última geração"
+        },
+        {
+            url: "https://www.cobrareporter.com.br/wp-content/uploads/2023/05/Col%C3%A9gio-Unidade-Polo-arapongas-18.jpeg",
+            titulo: "Sala de Aula Integrada",
+            descricao: "Ambiente moderno para ensino médio integrado"
+        },
+        {   
+            url: "https://www.cobrareporter.com.br/wp-content/uploads/2023/05/Col%C3%A9gio-Unidade-Polo-arapongas-13-1024x576.jpeg",
+            titulo: "Campus Unidade Polo",
+            descricao: "Estrutura completa para aprendizagem"
+        },
+        {
+            url: "https://www.gis.seed.pr.gov.br/gis/exibirFoto.jpg?codFoto=298",
+            titulo: "Núcleo de Inteligência Artificial",
+            descricao: "Laboratório especializado em IA"
+        }
+    ];
+
+    // =================================================================
+    // NÃO EDITAR DAQUI PARA BAIXO (código do carrossel)
+    // =================================================================
+    
+    let imagensCarrossel = [];
+    let currentIndex = 0;
+    let autoInterval;
+    let track, indicatorsContainer;
+
+    function carregarImagensDoArray() {
+        imagensCarrossel = [];
+        for (let i = 0; i < minhasImagens.length; i++) {
+            imagensCarrossel.push(minhasImagens[i].url);
+        }
+    }
+
+    function atualizarCarrossel() {
+        if (!track) return;
+        
+        const totalSlides = imagensCarrossel.length;
+        
+        if (totalSlides === 0) {
+            track.innerHTML = `
+                <div class="carousel-slide">
+                    <div style="display:flex; align-items:center; justify-content:center; height:100%; min-height:300px; background:#eef3fc; color:#003366; text-align:center; padding:40px;">
+                        <div>
+                            <h3>📸 Nenhuma imagem configurada</h3>
+                            <p>Edite o array "minhasImagens" no código e adicione as URLs das suas fotos.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            if (indicatorsContainer) indicatorsContainer.innerHTML = "";
+            return;
+        }
+        
+        track.innerHTML = "";
+        for (let i = 0; i < totalSlides; i++) {
+            const slideDiv = document.createElement("div");
+            slideDiv.classList.add("carousel-slide");
+            const img = document.createElement("img");
+            img.src = imagensCarrossel[i];
+            img.alt = minhasImagens[i]?.titulo || `Imagem ${i+1}`;
+            img.title = minhasImagens[i]?.descricao || "";
+            img.style.width = "100%";
+            img.style.height = "auto";
+            slideDiv.appendChild(img);
+            track.appendChild(slideDiv);
+        }
+        
+        if (indicatorsContainer) {
+            indicatorsContainer.innerHTML = "";
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("indicator");
+                if (i === currentIndex) dot.classList.add("active");
+                dot.addEventListener("click", () => {
+                    currentIndex = i;
+                    updateCarouselPosition();
+                    resetAutoPlay();
+                });
+                indicatorsContainer.appendChild(dot);
+            }
+        }
+        
+        updateCarouselPosition();
+    }
+    
+    function updateCarouselPosition() {
+        if (!track) return;
+        const offset = -currentIndex * 100;
+        track.style.transform = `translateX(${offset}%)`;
+        const dots = document.querySelectorAll(".indicator");
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) dot.classList.add("active");
+            else dot.classList.remove("active");
+        });
+    }
+    
+    function nextSlide() {
+        if (imagensCarrossel.length === 0) return;
+        currentIndex = (currentIndex + 1) % imagensCarrossel.length;
+        updateCarouselPosition();
+    }
+    
+    function prevSlide() {
+        if (imagensCarrossel.length === 0) return;
+        currentIndex = (currentIndex - 1 + imagensCarrossel.length) % imagensCarrossel.length;
+        updateCarouselPosition();
+    }
+    
+    function resetAutoPlay() {
+        if (autoInterval) clearInterval(autoInterval);
+        if (imagensCarrossel.length > 0) {
+            autoInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % imagensCarrossel.length;
+                updateCarouselPosition();
+            }, 5000);
+        }
+    }
+    
+    function configurarBotoes() {
+        const prev = document.getElementById("prevBtn");
+        const next = document.getElementById("nextBtn");
+        if (prev) {
+            const newPrev = prev.cloneNode(true);
+            prev.parentNode.replaceChild(newPrev, prev);
+            newPrev.addEventListener("click", () => { prevSlide(); resetAutoPlay(); });
+        }
+        if (next) {
+            const newNext = next.cloneNode(true);
+            next.parentNode.replaceChild(newNext, next);
+            newNext.addEventListener("click", () => { nextSlide(); resetAutoPlay(); });
+        }
+        
+        const carouselContainer = document.querySelector(".carousel-container");
+        if (carouselContainer) {
+            carouselContainer.removeEventListener("mouseenter", () => {});
+            carouselContainer.removeEventListener("mouseleave", () => {});
+            carouselContainer.addEventListener("mouseenter", () => {
+                if (autoInterval) clearInterval(autoInterval);
+            });
+            carouselContainer.addEventListener("mouseleave", () => {
+                resetAutoPlay();
+            });
+        }
+    }
+    
+    function showPage(pageName) {
+        document.getElementById('homePage').classList.add('hidden');
+        document.getElementById('colegioPage').classList.add('hidden');
+        document.getElementById('cursosPage').classList.add('hidden');
+        document.getElementById('contatoPage').classList.add('hidden');
+        
+        if (pageName === 'home') {
+            document.getElementById('homePage').classList.remove('hidden');
+            setTimeout(() => {
+                track = document.getElementById("carouselTrack");
+                indicatorsContainer = document.getElementById("indicators");
+                carregarImagensDoArray();
+                atualizarCarrossel();
+                configurarBotoes();
+                resetAutoPlay();
+            }, 100);
+        } else if (pageName === 'colegio') {
+            document.getElementById('colegioPage').classList.remove('hidden');
+        } else if (pageName === 'cursos') {
+            document.getElementById('cursosPage').classList.remove('hidden');
+        } else if (pageName === 'contato') {
+            document.getElementById('contatoPage').classList.remove('hidden');
+        }
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    window.showPage = showPage;
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        track = document.getElementById("carouselTrack");
+        indicatorsContainer = document.getElementById("indicators");
+        carregarImagensDoArray();
+        atualizarCarrossel();
+        configurarBotoes();
+        resetAutoPlay();
+    });
+</script>
+</body>
+</html>
